@@ -33,15 +33,14 @@ jobs:
         docker build -t ${{ secrets.DOCKER_USERNAME }}/service-b:latest ./microservices/microservices/service-b
         docker push ${{ secrets.DOCKER_USERNAME }}/service-b:latest
 
-    # Step 5: Deploy to Kubernetes
-    - name: Set up Kubectl
-      uses: azure/setup-kubectl@v3
-      with:
-        version: 'latest'
+    # Step 5: Set up kubeconfig using the secret
+    - name: Set up Kubeconfig
+      run: |
+        echo "${{ secrets.KUBECONFIG }}" | base64 -d > kubeconfig
+        export KUBECONFIG=$(pwd)/kubeconfig
 
+    # Step 6: Deploy to Kubernetes
     - name: Deploy to Kubernetes
-      env:
-        KUBECONFIG: ${{ secrets.KUBECONFIG }}
       run: |
         kubectl apply -f ./k8s/service-a-deployment.yaml
         kubectl apply -f ./k8s/service-a-service.yaml
