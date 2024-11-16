@@ -139,14 +139,13 @@ We welcome contributions to make this project even better! Here's how you can co
 ## 💡 **Future Enhancements**
 
 - Implement **auto-scaling** with Kubernetes HPA (Horizontal Pod Autoscaler).  
-- Add **custom alerting rules** in Prometheus and Grafana.  
 - Introduce a **service mesh** like Istio for enhanced traffic management.  
 
 ---
 
 ## 🎉 **Acknowledgments**
 
-This project is part of the **DevOps Course 2024** initiative. Special thanks to all contributors and mentors for their guidance and support.  
+This project is part of the **DevOps Course 2024** initiative. Special thanks to my mentor for guidance and support.  
 
 --- 
 
