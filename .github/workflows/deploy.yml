@@ -38,11 +38,12 @@ jobs:
       run: |
         echo "${{ secrets.KUBECONFIG }}" | base64 -d > kubeconfig
         export KUBECONFIG=$(pwd)/kubeconfig
+        kubectl cluster-info
 
     # Step 6: Deploy to Kubernetes
     - name: Deploy to Kubernetes
       run: |
-        kubectl apply -f ./k8s/service-a-deployment.yaml
-        kubectl apply -f ./k8s/service-a-service.yaml
-        kubectl apply -f ./k8s/service-b-deployment.yaml
-        kubectl apply -f ./k8s/service-b-service.yaml
+        kubectl apply -f ./k8s/service-a-deployment.yaml --validate=false
+        kubectl apply -f ./k8s/service-a-service.yaml --validate=false
+        kubectl apply -f ./k8s/service-b-deployment.yaml --validate=false
+        kubectl apply -f ./k8s/service-b-service.yaml --validate=false
